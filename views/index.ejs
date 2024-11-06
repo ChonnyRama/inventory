@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <%= title%>
+</head>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <form action="/" method="get">
+    <label for="types">Search by type</label>
+    <select name="types" id="types">
+      <option value="aberration">aberration</option>
+      <option value="beast">Beast</option>
+      <option value="celestial">Celestial</option>
+      <option value="construct">Construct</option>
+      <option value="dragon">Dragon</option>
+      <option value="elemental">Elemental</option>
+      <option value="fey">fey</option>
+      <option value="fiend">Fiend</option>
+      <option value="giant">Giant</option>
+      <option value="humanoid">Humanoid</option>
+      <option value="monstrosity">Monstrosity</option>
+      <option value="ooze">Ooze</option>
+      <option value="plant">Plant</option>
+      <option value="undead">Undead</option>
+    </select>
+  </form>
+  <ul>
+    <% monsters.forEach(monster=> {%>
+      <li>
+        <%= monster.name %>
+      </li>
+      <%})%>
+  </ul>
+</body>
+
+</html>
