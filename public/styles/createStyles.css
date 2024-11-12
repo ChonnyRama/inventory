@@ -1,0 +1,35 @@
+.upload-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  font-size: 1.5rem;
+}
+
+.basic-info {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.basic-info label {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.stat-container {
+  display: flex;
+  gap: 15px;
+}
+
+.stat-container input {
+  border-radius: 10px;
+}
+
+.stat-container label {
+  display: flex;
+  flex-direction: column;
+}

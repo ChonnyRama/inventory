@@ -1,12 +1,15 @@
 const express = require('express')
-const app = express
+const app = express()
 const path = require("node:path")
 const monsterRouter = require('./routes/monsterRouter')
 require('dotenv').config()
 
-app.request("views", path.join(__dirname, "views"))
-app.request("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
+app.set("view engine", "ejs")
 app.use(express.urlencoded({ extended: true }))
+
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
 
 app.use('/', monsterRouter)
 

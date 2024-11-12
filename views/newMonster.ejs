@@ -1,0 +1,63 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="stylesheet" href="/styles/createStyles.css">
+</head>
+
+<body>
+  <h1>
+    <%=title%>
+  </h1>
+  <%- include('navbar', {links:links})%>
+    <form action="/create" method="post" class="upload-container">
+      <div class="basic-info">
+        <label for="name">Monster Name
+          <input type="text" name="name" id="name" required>
+        </label>
+        <label for="type">Type
+          <select name="type" id="type" required>
+            <option value="aberration">aberration</option>
+            <option value="beast">Beast</option>
+            <option value="celestial">Celestial</option>
+            <option value="construct">Construct</option>
+            <option value="dragon">Dragon</option>
+            <option value="elemental">Elemental</option>
+            <option value="fey">fey</option>
+            <option value="fiend">Fiend</option>
+            <option value="giant">Giant</option>
+            <option value="humanoid">Humanoid</option>
+            <option value="monstrosity">Monstrosity</option>
+            <option value="ooze">Ooze</option>
+            <option value="plant">Plant</option>
+            <option value="undead">Undead</option>
+          </select>
+        </label>
+
+      </div>
+      <div class="stat-container">
+        <label for="str">Str
+          <input type="number" name="str" id="str" min="-10" max="30" required>
+        </label>
+        <label for="dex">Dex
+          <input type="number" name="dex" id="dex" min="-10" max="30" required>
+        </label>
+        <label for="con">Con
+          <input type="number" name="con" id="con" min="-10" max="30" required>
+        </label>
+        <label for="int">Int
+          <input type="number" name="int" id="int" min="-10" max="30" required>
+        </label>
+        <label for="wis">Wis
+          <input type="number" name="wis" id="wis" min="-10" max="30" required>
+        </label>
+        <label for="cha">Cha
+          <input type="number" name="cha" id="cha" min="-10" max="30" required>
+        </label>
+
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

@@ -1,7 +1,10 @@
+//monsterRouter.js
 const { Router } = require('express')
-const { getMonsters } = require('../controllers/monsterController')
+const monsterController = require('../controllers/monsterController')
 const monsterRouter = Router()
 
-monsterRouter.get('/', getMonsters)
+monsterRouter.get('/', monsterController.getMonsters)
+monsterRouter.get('/create', monsterController.createMonstersGet)
+monsterRouter.post('/create', monsterController.createMonstersPost)
 
 module.exports = monsterRouter
