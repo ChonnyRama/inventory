@@ -14,7 +14,7 @@ INSERT INTO monsters (name, type_id)
 VALUES
   ('goblin', 10),
   ('wolf', 2),
-  ('ghost', 13);
+  ('ghost', 14);
 `;
 
 const CREATE_ABILITY_SCORES = `

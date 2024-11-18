@@ -1,21 +1,34 @@
+//queries.js
+
 const pool = require('./pool')
 
 async function getAllMonsters() {
-  const { rows } = await pool.query('SELECT name FROM monsters')
+  const { rows } = await pool.query('SELECT * FROM monsters')
   return rows
 }
 
 async function getMonstersByType(type) {
-  const typeId = await pool.query('SELECT type_id FROM types WHEN type_name = $1',[type])
-  const { rows } = await pool.query('SELECT name FROM monsters WHERE type_id = $1', [typeId])
-  return rows
+  try {
+    const typeResult = await pool.query('SELECT type_id FROM types WHERE type_name = $1', [type])
+    const typeId = typeResult.rows[0].type_id;
+    const { rows } = await pool.query('SELECT name FROM monsters WHERE type_id = $1', [typeId])
+    return rows
+  } catch (err) {
+    console.error('Error fetching monsters:', err)
+    throw err
+  }
+  
 }
 
 async function createMonster(monster) {
   //destructure monster object being passed
   const { name, type, str, dex, con, int, wis, cha } = monster;
 
-  const typeId = await pool.query('SELECT type_id FROM types WHERE type_name LIKE $1', [type])
+  const typeResult = await pool.query('SELECT type_id FROM types WHERE type_name = $1', [type])
+  if (typeResult.rows.length === 0) {
+    throw new Error(`Type "${type}" not found`)
+  }
+  const typeId = typeResult.rows[0].type_id;
   const monsterResult = await pool.query('INSERT INTO monsters (name, type_id) VALUES ($1, $2) RETURNING monster_id', [name, typeId])
   const monsterId = monsterResult.rows[0].monster_id
 
@@ -42,7 +55,6 @@ async function createMonster(monster) {
     await pool.query('ROLLBACK')
     throw err
   }
-  await pool.query
 }
 
 module.exports = {

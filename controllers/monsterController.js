@@ -1,3 +1,4 @@
+//monsterController.js
 const db = require('../db/queries')
 
 const links = [
@@ -6,10 +7,14 @@ const links = [
 ]
 
 async function getMonsters(req, res) {
-  // const monsters = db.getAllMonsters()
-  const monsters = [
-    {name: 'goblin'}
-  ]
+  const search = req.query.types;
+  let monsters
+
+  if (search) {
+    monsters = await db.getMonstersByType(search)
+  } else {
+    monsters = await db.getAllMonsters()
+  }
   res.render('index',{title:'Available Monsters',monsters, links: links})
 }
 
@@ -18,7 +23,7 @@ async function createMonstersGet(req, res) {
 }
 
 async function createMonstersPost(req, res) {
-  db.createMonster(req.body)
+  await db.createMonster(req.body)
   res.redirect("/")
 }
 
