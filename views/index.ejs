@@ -30,10 +30,12 @@
       </select>
       <button type="submit">Search</button>
     </form>
-    <ul>
+    <ul class="monsters-container">
       <% monsters.forEach(monster=> {%>
         <li>
-          <%= monster.name %>
+          <a href="/<%= monster.name %>/get">
+            <%= monster.name %>
+          </a>
         </li>
         <%})%>
     </ul>

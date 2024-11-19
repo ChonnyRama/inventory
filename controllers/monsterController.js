@@ -27,8 +27,15 @@ async function createMonstersPost(req, res) {
   res.redirect("/")
 }
 
+async function getMonsterBehavior(req, res) {
+  const monsterRows = await db.getMonsterBehavior(req.params.monstername)
+  res.render('monsterInfo', {monName: monsterRows[0].monster_name, monsterRows, links})
+  
+}
+
 module.exports = {
   getMonsters,
   createMonstersGet,
-  createMonstersPost
+  createMonstersPost,
+  getMonsterBehavior
 }

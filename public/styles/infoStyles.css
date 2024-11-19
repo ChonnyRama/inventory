@@ -1,0 +1,26 @@
+p {
+  font-size: 1.2rem;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  row-gap: .5rem;
+}
+
+.stats-rows {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr;
+  grid-column-gap: .5rem;
+  align-items: center;
+}
+
+.stats-rows span {
+  border: 1px solid black;
+  padding: .5rem;
+  text-align: center;
+}
+
+.stats-rows.header span {
+  font-weight: bold;
+}

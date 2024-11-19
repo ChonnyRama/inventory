@@ -1,0 +1,48 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="stylesheet" href="/styles/infoStyles.css">
+</head>
+
+<body>
+  <%- include('navbar', {links:links})%>
+    <h2>
+      <%= monName%>
+    </h2>
+    <p>Type: <%=monsterRows[0].monster_type%>
+    </p>
+    <p>Type Description: <%=monsterRows[0].type_description %>
+    </p>
+    <ul class="stats-container">
+      <li class="stats-rows header">
+        <span>Ability</span>
+        <span>Score</span>
+        <span>Stat Type</span>
+        <span>Tier</span>
+      </li>
+      <%monsterRows.forEach((stat)=> {%>
+        <li>
+          <div class="stats-rows">
+            <span>
+              <%= stat.ability_type %>
+            </span>
+            <span>
+              <%= stat.score %>
+            </span>
+            <span>
+              <%= stat.stat_type %>
+            </span>
+            <span>
+              <%= stat.tier %>
+            </span>
+            <!-- <span>
+              <%= stat.range_description %>
+            </span> -->
+          </div>
+        </li>
+        <%})%>
+    </ul>
+</body>
+
+</html>

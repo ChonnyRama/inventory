@@ -7,4 +7,6 @@ monsterRouter.get('/', monsterController.getMonsters)
 monsterRouter.get('/create', monsterController.createMonstersGet)
 monsterRouter.post('/create', monsterController.createMonstersPost)
 
+monsterRouter.get('/:monstername/get', monsterController.getMonsterBehavior)
+
 module.exports = monsterRouter

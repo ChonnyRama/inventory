@@ -70,3 +70,9 @@ body {
   margin: 20px;
 
 }
+
+ul {
+  margin-top: 20px;
+  list-style-type: none;
+  font-size: 1.3rem;
+}
