@@ -23,25 +23,27 @@ async function getMonstersByType(type) {
 async function createMonster(monster) {
   //destructure monster object being passed
   const { name, type, str, dex, con, int, wis, cha } = monster;
-
-  const typeResult = await pool.query('SELECT type_id FROM types WHERE type_name = $1', [type])
-  if (typeResult.rows.length === 0) {
-    throw new Error(`Type "${type}" not found`)
-  }
-  const typeId = typeResult.rows[0].type_id;
-  const monsterResult = await pool.query('INSERT INTO monsters (name, type_id) VALUES ($1, $2) RETURNING monster_id', [name, typeId])
-  const monsterId = monsterResult.rows[0].monster_id
+  const formattedName = name.toLowerCase()
+  
 
   const abilities = [
-    { abilityType: 'Strength', score: str },
-    { abilityType: 'Dexterity', score: dex },
-    { abilityType: 'Constitution', score: con },
-    { abilityType: 'Intelligence', score: int },
-    { abilityType: 'Wisdom', score: wis },
-    {abilityType: 'Charisma', score: cha},
+    { abilityType: 'strength', score: str },
+    { abilityType: 'dexterity', score: dex },
+    { abilityType: 'constitution', score: con },
+    { abilityType: 'intelligence', score: int },
+    { abilityType: 'wisdom', score: wis },
+    {abilityType: 'charisma', score: cha},
   ]
 
   try {
+    const typeResult = await pool.query('SELECT type_id FROM types WHERE type_name = $1', [type])
+    if (typeResult.rows.length === 0) {
+      throw new Error(`Type "${type}" not found`)
+    }
+    const typeId = typeResult.rows[0].type_id;
+    const monsterResult = await pool.query('INSERT INTO monsters (name, type_id) VALUES ($1, $2) RETURNING monster_id', [formattedName, typeId])
+    const monsterId = monsterResult.rows[0].monster_id
+    
     await pool.query('BEGIN')
 
     for (const ability of abilities) {

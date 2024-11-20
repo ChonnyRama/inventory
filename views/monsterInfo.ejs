@@ -20,6 +20,7 @@
         <span>Score</span>
         <span>Stat Type</span>
         <span>Tier</span>
+        <span>Description</span>
       </li>
       <%monsterRows.forEach((stat)=> {%>
         <li>
@@ -36,9 +37,9 @@
             <span>
               <%= stat.tier %>
             </span>
-            <!-- <span>
+            <span class="range-desc">
               <%= stat.range_description %>
-            </span> -->
+            </span>
           </div>
         </li>
         <%})%>
